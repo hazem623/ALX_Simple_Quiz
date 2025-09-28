@@ -1,29 +1,35 @@
-document.addEventListener("DOMContentLoaded", function() {
+// quiz.js
 
-    // Function to check the selected answer
-    function checkAnswer() {
-        const correctAnswer = "4"; // Correct answer
-        const selectedOption = document.querySelector('input[name="quiz"]:checked');
-        const feedback = document.getElementById("feedback");
+// 1) دالة اسمها بالضبط checkAnswer موجودة على المستوى العام
+function checkAnswer() {
+    // 2) المتغير correctAnswer بالاسم والمحتوى المطلوب
+    const correctAnswer = "4";
 
-        if (selectedOption) {
-            const userAnswer = selectedOption.value;
+    // 3) استرداد اختيار المستخدم (radio checked)
+    const selectedOption = document.querySelector('input[name="quiz"]:checked');
 
-            if (userAnswer === correctAnswer) {
-                feedback.textContent = "Correct! Well done.";
-                feedback.style.color = "#28a745"; // green
-            } else {
-                feedback.textContent = "That's incorrect. Try again!";
-                feedback.style.color = "#dc3545"; // red
-            }
-        } else {
-            feedback.textContent = "Please select an answer!";
-            feedback.style.color = "#dc3545";
-        }
+    // 4) العنصر اللي هيعرض الفيدباك
+    const feedback = document.getElementById("feedback");
+
+    // لو مافيش اختيار، ندي رسالة واضحة (مش مطلوب صراحة بس مفيد)
+    if (!selectedOption) {
+        feedback.textContent = "Please select an answer!";
+        feedback.style.color = "#dc3545";
+        return;
     }
 
-    // Add click event listener to the submit button
-    const submitBtn = document.getElementById("submit-answer");
-    submitBtn.addEventListener("click", checkAnswer);
+    // 5) اسم المتغير userAnswer مطابق للمتوقع
+    const userAnswer = selectedOption.value;
 
-});
+    // 6) المقارنة بالضبط وبالرسائل المطلوبة
+    if (userAnswer === correctAnswer) {
+        feedback.textContent = "Correct! Well done.";
+        feedback.style.color = "#28a745";
+    } else {
+        feedback.textContent = "That's incorrect. Try again!";
+        feedback.style.color = "#dc3545";
+    }
+}
+
+// 7) إضافة الـ event listener بنفس الصيغة اللي الشيكر بيدور عليها
+document.getElementById("submit-answer").addEventListener("click", checkAnswer);
