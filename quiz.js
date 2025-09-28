@@ -1,24 +1,29 @@
-// Function to check the selected answer
-function checkAnswer() {
-    const correctAnswer = "4"; // Correct answer
-    const selectedOption = document.querySelector('input[name="quiz"]:checked');
-    const feedback = document.getElementById("feedback");
+document.addEventListener("DOMContentLoaded", function() {
 
-    if (selectedOption) {
-        const userAnswer = selectedOption.value;
+    // Function to check the selected answer
+    function checkAnswer() {
+        const correctAnswer = "4"; // Correct answer
+        const selectedOption = document.querySelector('input[name="quiz"]:checked');
+        const feedback = document.getElementById("feedback");
 
-        if (userAnswer === correctAnswer) {
-            feedback.textContent = "Correct! Well done.";
-            feedback.style.color = "#28a745"; // green
+        if (selectedOption) {
+            const userAnswer = selectedOption.value;
+
+            if (userAnswer === correctAnswer) {
+                feedback.textContent = "Correct! Well done.";
+                feedback.style.color = "#28a745"; // green
+            } else {
+                feedback.textContent = "That's incorrect. Try again!";
+                feedback.style.color = "#dc3545"; // red
+            }
         } else {
-            feedback.textContent = "That's incorrect. Try again!";
-            feedback.style.color = "#dc3545"; // red
+            feedback.textContent = "Please select an answer!";
+            feedback.style.color = "#dc3545";
         }
-    } else {
-        feedback.textContent = "Please select an answer!";
-        feedback.style.color = "#dc3545";
     }
-}
 
-// Add click event listener to the submit button
-document.getElementById("submit-answer").addEventListener("click", checkAnswer);
+    // Add click event listener to the submit button
+    const submitBtn = document.getElementById("submit-answer");
+    submitBtn.addEventListener("click", checkAnswer);
+
+});
