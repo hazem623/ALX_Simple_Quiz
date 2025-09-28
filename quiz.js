@@ -1,12 +1,17 @@
 function checkAnswer() {
     const correctAnswer = "4";
     const selectedRadio = document.querySelector('input[name="quiz"]:checked');
-    const userAnswer = selectedRadio.value;
     
-    if (userAnswer === correctAnswer) {
-        document.getElementById('feedback').textContent = "Correct! Well done.";
+    if (selectedRadio === null) {
+        document.getElementById('feedback').textContent = "Please select an answer.";
     } else {
-        document.getElementById('feedback').textContent = "That's incorrect. Try again!";
+        const userAnswer = selectedRadio.value;
+        
+        if (userAnswer === correctAnswer) {
+            document.getElementById('feedback').textContent = "Correct! Well done.";
+        } else {
+            document.getElementById('feedback').textContent = "That's incorrect. Try again!";
+        }
     }
 }
 
